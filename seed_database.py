@@ -12,11 +12,13 @@ import server
 os.system('dropdb ratings')
 os.system('createdb ratings')
 
-model.connect_to_db(server.app)
-model.db.create_all()
+model.connect_to_db(server.app) 
+model.db.create_all() #creating all tabels 
 
-with open('data/movies.json') as f:
-    movie_data = json.loads(f.read())
+#execute the same commands we dumped to ratings.sql 
+
+with open('data/movies.json') as f:  #opening our json file 
+    movie_data = json.loads(f.read()) #adding the whole thing to movie data - loading reader
 
 # Create movies, store them in list so we can use them
 # to create fake ratings later
@@ -32,15 +34,15 @@ for movie in movie_data:
                                 release_date,
                                 poster_path)
     movies_in_db.append(db_movie)
+#crud.create_movie putting it in the db
 
-for n in range(10):
+for n in range(10): #create 10 fake users
     email = f'user{n}@test.com'  # Voila! A unique email!
     password = 'test'
 
-    user = crud.create_python3 seed_database.pyuser(email, password)
 
     for _ in range(10):
         random_movie = choice(movies_in_db)
-        score = randint(1, 5)
+        score = randint(1, 5) #assign random score
 
         crud.create_rating(user, random_movie, score)

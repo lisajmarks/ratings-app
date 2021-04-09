@@ -11,6 +11,7 @@ def create_user(email, password):
 
     return user
 
+#creating movie model object - 
 def create_movie(title, overview, release_date, poster_path):
     """Create and return a new movie."""
 
@@ -24,6 +25,12 @@ def create_movie(title, overview, release_date, poster_path):
 
     return movie
 
+def get_movies():
+    """Return all movies."""
+
+    return Movie.query.all()
+    
+#transactions grouping sequence of things happening to db line 36
 def create_rating(user, movie, score):
     """Create and return a new rating."""
 
@@ -34,6 +41,13 @@ def create_rating(user, movie, score):
 
     return rating
 
+def get_movie_by_id(movie_id):
+    return Movie.query.get(movie_id)
+
+def get_users():
+    """Return all user."""
+
+    return User.query.all()
+
 if __name__ == '__main__':
     from server import app
-    connect_to_db(app)
