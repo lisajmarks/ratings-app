@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}All Movies{% endblock %}
+{% block title %}All Users{% endblock %}
 
 {% block body %}
-{% for movie in movies%}
+{% for user in users%}
 <li>
-<a href="/users/{{ users.user_id }}">
+<a href="/users/{{user.user_id}}">
     {{ user.email }}
 </a>
 </li>
